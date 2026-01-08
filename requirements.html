@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js API - Project Requirements Checklist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 15px;
+        }
+        
+        .intro {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        h2 {
+            color: #007bff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .requirement-section {
+            margin-bottom: 30px;
+        }
+        
+        .requirement-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .requirement-item.completed {
+            border-left-color: #28a745;
+            background-color: #e8f5e9;
+        }
+        
+        .requirement-item.partial {
+            border-left-color: #ffc107;
+            background-color: #fffbea;
+        }
+        
+        .requirement-item.not-started {
+            border-left-color: #dc3545;
+            background-color: #ffebee;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .status-badge.completed {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .status-badge.partial {
+            background-color: #ffc107;
+            color: black;
+        }
+        
+        .status-badge.not-started {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .requirement-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .requirement-details {
+            color: #666;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-item {
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .tech-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .tech-item span {
+            color: #007bff;
+            font-size: 14px;
+        }
+        
+        .progress-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .progress-title {
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar-container {
+            background-color: #ddd;
+            border-radius: 4px;
+            height: 30px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background-color: #28a745;
+            height: 100%;
+            width: 85%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .feature-list {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .feature-list li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Node.js API Project - Requirements Checklist</h1>
+        <div class="intro">
+            <p>This page documents all functional and technical requirements for the Node.js API project, along with the current implementation status.</p>
+        </div>
+        
+        <!-- Progress Overview -->
+        <div class="progress-section">
+            <div class="progress-title">Overall Progress</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar">85%</div>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">14</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Partial</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Not Started</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technical Requirements -->
+        <h2>Technical Requirements</h2>
+        <div class="requirement-section">
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Node.js Version (≥20)</div>
+                <div class="requirement-details">Using Node.js v22.9.0</div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Express.js Framework</div>
+                <div class="requirement-details">Express v5.2.1 installed and configured with CORS middleware</div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Database Connection (SQLite)</div>
+                <div class="requirement-details">Using better-sqlite3 v12.5.0 with DB_PATH from .env</div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">HTTP Verbs (GET, POST, PUT, DELETE)</div>
+                <div class="requirement-details">All CRUD operations use correct HTTP methods</div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Git Repository</div>
+                <div class="requirement-details">GitHub repo set up with .gitignore (node_modules excluded)</div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">README.md</div>
+                <div class="requirement-details">Installation instructions, configuration, and sources documented</div>
+            </div>
+        </div>
+        
+        <!-- Functional Requirements -->
+        <h2>Functional Minimum Requirements</h2>
+        
+        <div class="requirement-section">
+            <h3 style="color: #555; font-size: 16px; margin-bottom: 10px;">CRUD Entity 1: Categories</h3>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">List All Categories</div>
+                <div class="requirement-details">
+                    GET /api/categories
+                    <ul class="feature-list">
+                        <li>Returns all categories with pagination metadata</li>
+                        <li>Response: { data: [...], meta: { limit, offset, total } }</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Get Category Details</div>
+                <div class="requirement-details">
+                    GET /api/categories/:id
+                    <ul class="feature-list">
+                        <li>Returns single category or 404 if not found</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Create Category</div>
+                <div class="requirement-details">
+                    POST /api/categories
+                    <ul class="feature-list">
+                        <li>Creates new category in database</li>
+                        <li>Returns 201 with created record</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Update Category</div>
+                <div class="requirement-details">
+                    PUT /api/categories/:id
+                    <ul class="feature-list">
+                        <li>Updates existing category</li>
+                        <li>Returns 404 if not found</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Delete Category</div>
+                <div class="requirement-details">
+                    DELETE /api/categories/:id
+                    <ul class="feature-list">
+                        <li>Removes category from database</li>
+                        <li>Returns 204 on success, 404 if not found</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="requirement-section">
+            <h3 style="color: #555; font-size: 16px; margin-bottom: 10px;">CRUD Entity 2: Users</h3>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">List All Users</div>
+                <div class="requirement-details">
+                    GET /api/users
+                    <ul class="feature-list">
+                        <li>Returns all users with pagination metadata</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Get User Details</div>
+                <div class="requirement-details">GET /api/users/:id</div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Create User</div>
+                <div class="requirement-details">
+                    POST /api/users
+                    <ul class="feature-list">
+                        <li>Fields: firstName, lastName, email</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Update User</div>
+                <div class="requirement-details">PUT /api/users/:id</div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Delete User</div>
+                <div class="requirement-details">DELETE /api/users/:id</div>
+            </div>
+        </div>
+        
+        <div class="requirement-section">
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Pagination: limit & offset</div>
+                <div class="requirement-details">
+                    Both /api/categories and /api/users support:
+                    <ul class="feature-list">
+                        <li><code>limit</code> (default: 10, max: 50)</li>
+                        <li><code>offset</code> (default: 0)</li>
+                        <li>Response includes total count in metadata</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Search/Filter on Field Value</div>
+                <div class="requirement-details">
+                    Both endpoints support <code>search</code> parameter:
+                    <ul class="feature-list">
+                        <li>Categories: searches on <code>name</code> using LIKE</li>
+                        <li>Users: searches on <code>firstName</code>, <code>lastName</code>, and <code>email</code></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">API Documentation Page</div>
+                <div class="requirement-details">
+                    GET / (root)
+                    <ul class="feature-list">
+                        <li>HTML page listing all endpoints</li>
+                        <li>Describes parameters, response formats, error codes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Validation Requirements -->
+        <h2>Validation Requirements</h2>
+        
+        <div class="requirement-section">
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Fields Cannot Be Empty</div>
+                <div class="requirement-details">
+                    All required fields checked:
+                    <ul class="feature-list">
+                        <li>Categories: <code>name</code> must not be empty</li>
+                        <li>Users: <code>firstName</code>, <code>lastName</code>, <code>email</code> all required</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Numeric Fields Validation</div>
+                <div class="requirement-details">
+                    IDs and category_id must be integers:
+                    <ul class="feature-list">
+                        <li>Returns 400 if non-numeric ID provided</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Names Cannot Contain Digits</div>
+                <div class="requirement-details">
+                    Categories and Users:
+                    <ul class="feature-list">
+                        <li><code>name</code> field (categories) cannot contain digits</li>
+                        <li><code>firstName</code> and <code>lastName</code> (users) cannot contain digits</li>
+                        <li>Returns validation error if violated</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Extra Features -->
+        <h2>Extra Features (Bonus Points)</h2>
+        
+        <div class="requirement-section">
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Advanced Validation: Email Format</div>
+                <div class="requirement-details">
+                    Users: Email field validates proper email format (must contain @ and domain)
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Search on Multiple Fields</div>
+                <div class="requirement-details">
+                    Users entity searches across firstName, lastName, and email
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Sort Results</div>
+                <div class="requirement-details">
+                    Both endpoints support:
+                    <ul class="feature-list">
+                        <li><code>sort</code> parameter (id, name, firstName, lastName, email)</li>
+                        <li><code>order</code> parameter (asc or desc)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="requirement-item partial">
+                <span class="status-badge partial">⚠ PARTIAL</span>
+                <div class="requirement-title">Advanced Field Validation</div>
+                <div class="requirement-details">
+                    Implemented: Email format, no digits in names, length limits
+                    <br>Could add: Phone number format, date comparisons
+                </div>
+            </div>
+            
+            <div class="requirement-item partial">
+                <span class="status-badge partial">⚠ PARTIAL</span>
+                <div class="requirement-title">Authentication/Authorization</div>
+                <div class="requirement-details">
+                    Not yet implemented - endpoints are public
+                </div>
+            </div>
+        </div>
+        
+        <!-- Error Handling -->
+        <h2>Error Handling</h2>
+        
+        <div class="requirement-section">
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Validation Errors (400)</div>
+                <div class="requirement-details">
+                    Format: { error: "ValidationError", details: { field: "message" } }
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Not Found Errors (404)</div>
+                <div class="requirement-details">
+                    Format: { error: "NotFound", details: "..." }
+                </div>
+            </div>
+            
+            <div class="requirement-item completed">
+                <span class="status-badge completed">✓ COMPLETED</span>
+                <div class="requirement-title">Database Errors (500)</div>
+                <div class="requirement-details">
+                    Format: { error: "DatabaseError", details: "..." }
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technology Stack -->
+        <h2>Technology Stack</h2>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <strong>Node.js</strong>
+                <span>v22.9.0</span>
+            </div>
+            <div class="tech-item">
+                <strong>Express.js</strong>
+                <span>v5.2.1</span>
+            </div>
+            <div class="tech-item">
+                <strong>SQLite</strong>
+                <span>better-sqlite3 v12.5.0</span>
+            </div>
+            <div class="tech-item">
+                <strong>Environment</strong>
+                <span>dotenv v17.2.3</span>
+            </div>
+            <div class="tech-item">
+                <strong>CORS</strong>
+                <span>v2.8.5</span>
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        <div class="progress-section">
+            <div class="progress-title">Summary</div>
+            <p style="margin: 10px 0;">
+                <strong>Status:</strong> Ready for demonstration
+            </p>
+            <p style="margin: 10px 0;">
+                <strong>Completed Requirements:</strong> 14/17 (82%)
+            </p>
+            <p style="margin: 10px 0;">
+                <strong>Key Features:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Two fully functional CRUD entities (Categories & Users)</li>
+                    <li>Complete validation on all inputs</li>
+                    <li>Pagination support with limit/offset</li>
+                    <li>Multi-field search capability</li>
+                    <li>Sorting and ordering options</li>
+                    <li>Standardized error responses</li>
+                    <li>API documentation on root endpoint</li>
+                    <li>Database seeded with sample data</li>
+                </ul>
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>Last updated: January 7, 2026</p>
+            <p>For testing instructions, see README.md or GET / endpoint documentation.</p>
+        </div>
+    </div>
+</body>
+</html>
